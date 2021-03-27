@@ -2,7 +2,6 @@ def kmp_matcher(string,pattern):
     n=len(string)
     m=len(pattern)
     prefixArray=compute_prefix(pattern)
-    print(prefixArray)
     j=0
     for i in range(n):
         while j>0 and string[i]!=pattern[j]:
@@ -28,7 +27,7 @@ def compute_prefix(pattern):
     return lps
 
 
-string="AABAACAADAABAABA"
-pattern="AABA"
+string="algorithmisfun"
+pattern="fun"
 kmp_matcher(string,pattern)
 
