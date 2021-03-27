@@ -1,41 +1,34 @@
 def kmp_matcher(string,pattern):
     n=len(string)
     m=len(pattern)
-    prefixArray=[0]*m
-    prefix(pattern)
-    x,y,q=0,0,0
-    while x<n:
-        if string[x]==pattern[y]:
-            x+=1
-            y+=1
-        if y==m:
-            print("Found pattern at index "+ str(x-y))
-            y=prefixArray[y-1]
-        elif x<n and string[x]!=pattern[y]:
-            if y!=0:
-                y=prefixArray[y-1]
-            else:
-                x+=1
+    prefixArray=compute_prefix(pattern)
+    print(prefixArray)
+    j=0
+    for i in range(n):
+        while j>0 and string[i]!=pattern[j]:
+            j=prefixArray[j-1]
+        if string[i]==pattern[j]:
+            j+=1
+        if j==m:
+            print("Pattern found in index ", (i-(j-1)))
+            j=prefixArray[j-1]
 
 
-def prefix(pattern):
+def compute_prefix(pattern):
     m=len(pattern)
-    prefixArray=[0]*m
-    prefixArray[0]=0
+    lps=[0]*m
     k=0
-    for x in range(m):
-        if(pattern[x]==pattern[k]):
+    for i in range(1,m):
+        if pattern[k]==pattern[i]:
             k+=1
-            prefixArray[x]=k
+            lps[i]=k
         else:
-            if k!=0:
-                k=prefixArray[k-1]
-                x-=1
-            else:
-                prefixArray[x]=0
+            k=0
+            lps[i]=k
+    return lps
 
 
-string="algorithmisfun"
-pattern="fun"
+string="AABAACAADAABAABA"
+pattern="AABA"
 kmp_matcher(string,pattern)
 
