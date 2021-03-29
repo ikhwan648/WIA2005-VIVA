@@ -17,13 +17,13 @@ def kmp_matcher(string,pattern):
 def compute_prefix(pattern):
     m=len(pattern)
     lps=[0]*m
-    k=0                                                     # 
+    k=0                                                     # number of character and suffix
     for i in range(1,m):
         while k>0 and pattern[k]!=pattern[i]:
-            k=lps[k-1]                                      # 
+            k=lps[k-1]                                      # find previous suffix
         if pattern[k]==pattern[i]:
-            k+=1
-        lps[i]=k
+            k+=1                                            # next character and lps value
+        lps[i]=k                                            # store k in lps[]
     return lps
 
 string="algorithmisfun"
