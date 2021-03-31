@@ -29,4 +29,3 @@ def compute_prefix(pattern):
 string="algorithmisfun"
 pattern="fun"
 kmp_matcher(string,pattern)
-
