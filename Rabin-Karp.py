@@ -9,8 +9,7 @@ def RabinKarp(string, searchPattern, Q):
     p = 0 #hash value for searchPattern
     t = 0 #hash value for string
 
-    for i in range((m-1)): #obtain the result of *10 power of m-1
-        RM = (RM*R)%Q
+    RM = (R ** (m-1))%Q
     print("RM: " + str(RM))
 
     for i in range(0, m):
