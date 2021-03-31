@@ -1,13 +1,19 @@
-# Radix sort in Python
+
+def maximumplaces(array):
+    max_num = max(array)        #method to find maximum digit place for the maximum number and repeat the sorting
+                                #iteration base on the digit place
 
 
+    place = 1
+    while max_num // place > 0:
+        radixsort(array, place)                         #O(d)
+        place *= 10                              #O(d) = value of d ,k is the maximum possible value, then d would be O(logb(k))
+#repeated for each iteration so for each iteration ( O(n) + O(k) +  0(n) +  0(n) )
 
 def radixsort(array, place):
     sizenum = len(array)
     output = [0] * sizenum
-    count = [0] * 10                #O(d) = value of d ,k is the maximum possible value, then d would be O(logb(k))
-
-#repeated for each iteration so for each iteration ( O(n) + O(k) +  0(n) +  0(n) )
+    count = [0] * 10            #range of num in 0-9
     for i in range(0, sizenum):
         index = array[i] // place      #putting element into the places. We know that for this the
         count[index % 10] += 1              #end of this loop is n+1,therefore it TC is O(n)
@@ -18,7 +24,7 @@ def radixsort(array, place):
 
 
     i = sizenum - 1
-    while i >= 0:                                   #0(n)
+    while i >= 0:                                   #0(n )
 
         if i == 0:
             print("")
@@ -34,18 +40,12 @@ def radixsort(array, place):
 
     for i in range(0, sizenum):
         array[i] = output[i]                #0(n)
+
 #end of loop
 #therefore the time complexity is O(d)x( O(n) + O(k) +  0(n) +  0(n) )   = O(d(n+k)))
 
 
-def maximumplaces(array):
-    max_num = max(array)
 
-
-    place = 1
-    while max_num // place > 0:
-        radixsort(array, place)
-        place *= 10
 
 
 data = [50, 132, 174, 260, 301, 395, 409]
